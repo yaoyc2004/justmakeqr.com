@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fd">
+  <meta name="description" content="Just make a QR code and download it. Free, no email, no account, no expiring-code tricks. PNG and print-ready PDF, made in your browser.">
+  <title>JustMakeQR.com · Free QR Code Generator, No Sign-Up</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%233952df'/%3E%3Cpath fill='white' d='M13 13h18v18H13zm20 0h18v18H33zM13 33h18v18H13z'/%3E%3Cpath fill='%233952df' d='M18 18h8v8h-8zm20 0h8v8h-8zM18 38h8v8h-8z'/%3E%3Ccircle cx='42' cy='42' r='8' fill='%23ffce59'/%3E%3C/svg%3E">
+  <style>
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#202a43;background:#f7f8fd}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 88% 6%,#e9edff 0,transparent 30%),#f7f8fd}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.shell{width:min(1120px,calc(100% - 40px));margin:auto}
+header{border-bottom:1px solid #e6e9f3;background:#ffffffed;backdrop-filter:blur(12px)}
+header .shell{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:#3952df;white-space:nowrap}
+.brand-icon{width:39px;height:39px;flex:none;filter:drop-shadow(0 4px 6px #3952df25)}
+.brand-text{font-size:23px;font-weight:850;letter-spacing:-.075em;color:#1e2945}
+.brand-text span{color:#3952df;letter-spacing:-.06em}
+.brand-text b{display:inline-block;margin-left:2px;vertical-align:3px;border-radius:7px;padding:3px 5px;background:#ffce59;color:#283253;font-size:13px;font-weight:850;letter-spacing:-.025em}
+.tag{display:flex;align-items:center;gap:9px;color:#34437c;background:#eef1ff;border:1px solid #dde3ff;border-radius:100px;padding:9px 14px;font-size:12px;font-weight:750;white-space:nowrap}
+.tag-dot{width:8px;height:8px;border-radius:50%;background:#5e67e8;box-shadow:0 0 0 4px #dbe0ff}
+main{padding:51px 0 60px}
+.intro{max-width:760px;margin:0 0 34px}
+.eyebrow{display:flex;align-items:center;gap:9px;color:#4057d4;font-size:11px;font-weight:850;letter-spacing:.15em}
+.eyebrow-line{width:20px;height:3px;background:#ffce59;border-radius:3px}
+h1{font-size:clamp(43px,5.8vw,70px);line-height:1.045;letter-spacing:-.075em;margin:17px 0 16px;font-weight:850}
+h1 span{color:#3952df}
+.intro p{color:#5c6882;line-height:1.65;margin:0;font-size:17px;max-width:650px}
+.hero-points{display:flex;flex-wrap:wrap;gap:9px 21px;margin-top:23px;color:#344676;font-size:12px;font-weight:750}
+.hero-points span{white-space:nowrap}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:22px;align-items:start}
+.card{background:#fff;border:1px solid #e2e7f2;border-radius:22px;box-shadow:0 14px 45px #2432730a}
+.editor{padding:30px}
+.preview{padding:23px;text-align:center;position:sticky;top:20px;border-top:4px solid #3952df}
+h2{margin:0 0 21px;font-size:22px;letter-spacing:-.045em}
+label{display:block;font-size:13px;font-weight:750;margin:0 0 9px;color:#263454}
+.type-group{margin:0 0 16px}
+.type-group-title{margin:0 0 9px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8390a9;font-weight:850}
+.type-list{display:flex;flex-wrap:wrap;gap:7px}
+.type-button{border:1px solid #dfe4ef;border-radius:9px;background:#fafbff;padding:9px 11px;color:#53607a;font-size:12px;font-weight:700;transition:background .15s,border-color .15s,transform .15s}
+.type-button:hover{border-color:#aab7f6;transform:translateY(-1px)}
+.type-button.active{color:#3048c6;background:#edf0ff;border-color:#8f9eed;box-shadow:inset 0 0 0 1px #8f9eed}
+button:focus-visible,.brand:focus-visible{outline:3px solid #ffce59;outline-offset:3px}
+.fields{border-top:1px solid #e8ebf4;margin-top:24px;padding-top:23px}
+.field{margin-bottom:17px}
+.field:last-child{margin-bottom:0}
+textarea,input:not([type=color]):not([type=file]):not([type=checkbox]),select{display:block;width:100%;border:1px solid #ced6e6;background:#fff;border-radius:10px;padding:12px 13px;outline:0;color:#263454}
+textarea:focus,input:not([type=color]):not([type=file]):not([type=checkbox]):focus,select:focus{border-color:#5267e1;box-shadow:0 0 0 3px #3952df1e}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.field-note{font-size:12px;line-height:1.55;color:#68758d;margin:11px 0 0}
+textarea{min-height:130px;resize:vertical}
+.hint{font-size:12px;line-height:1.5;color:#78849a;margin:8px 0 0}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:16px}
+.design-heading{margin:32px 0 15px;padding-top:24px;border-top:1px solid #e8ebf4;font-size:20px}
+.color-control{display:flex;align-items:center;gap:11px;border:1px solid #ced6e6;padding:8px 11px;height:48px;border-radius:10px}
+input[type=color]{width:30px;height:30px;border:0;background:none;padding:0;cursor:pointer}
+.color-control input[type=text]:not([type=color]):not([type=file]){width:92px;border:0;outline:0;color:#53607a;font-size:13px;padding:5px 0;font-variant-numeric:tabular-nums;text-transform:uppercase;box-shadow:none}
+.color-control:focus-within{border-color:#5267e1;box-shadow:0 0 0 3px #3952df1e}
+.color-error{color:#ae3838;font-size:12px;min-height:18px;margin:6px 0 0}
+.subtle-label{margin-top:16px}
+.check-line{display:flex;align-items:center;gap:8px;font-size:13px;color:#53607a;margin:15px 0;cursor:pointer}
+.check-line input{accent-color:#3952df}
+.logo-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.logo-row input{max-width:220px;font-size:12px;color:#56647e}
+.logo-row input::file-selector-button{border:1px solid #ced6e6;border-radius:8px;background:#f4f6ff;color:#344ac1;padding:8px 11px;font-weight:750;margin-right:10px;cursor:pointer}
+.small-button{border:1px solid #ced6e6;border-radius:9px;background:white;color:#4055c2;padding:8px 11px;font-size:12px;font-weight:700}
+.logo-name{font-size:12px;color:#65738d;overflow-wrap:anywhere}
+.frame-picker{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:9px}
+.frame-choice{min-width:0;border:1px solid #dfe4ef;border-radius:12px;background:#fff;padding:8px 5px;color:#59667e;font-size:11px;font-weight:700;transition:border-color .15s,transform .15s}
+.frame-choice:hover{border-color:#9daaf1;transform:translateY(-1px)}
+.frame-choice.active{border-color:#5267e1;background:#f1f3ff;box-shadow:0 0 0 2px #3952df17;color:#3048c6}
+.frame-art{display:grid;place-items:center;height:88px;margin:0 auto 6px}
+.frame-art canvas{display:block;max-width:72px;max-height:86px;width:auto;height:auto}
+.notice{background:#f2f4ff;border:1px solid #dde3ff;border-radius:13px;padding:15px 16px;color:#405178;font-size:13px;line-height:1.6;margin-top:28px}
+.notice strong{color:#283fb8}
+.qr-stage{min-height:342px;display:grid;place-items:center;background:repeating-conic-gradient(#f4f6fc 0% 25%,#fafbff 0% 50%) 50% / 20px 20px;border:1px solid #edf0f8;border-radius:17px;padding:20px;overflow:hidden}
+#qr{display:flex;align-items:center;justify-content:center;width:100%;filter:drop-shadow(0 12px 20px #26345416)}
+#qr canvas{max-width:100%;max-height:390px;width:auto;height:auto}
+#matrixSource{display:none}
+.preview-title{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;font-weight:850;color:#687791;text-align:left;margin:0 0 15px}
+.preview-title:before{content:"";width:7px;height:7px;border-radius:50%;background:#38b782}
+.encoded{font-size:12px;color:#63718c;text-align:left;line-height:1.5;overflow-wrap:anywhere;margin:17px 0 18px;max-height:96px;overflow-y:auto}
+.encoded strong{color:#2b385a}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.action{border:1px solid #cfd7ea;color:#344ac1;background:#fff;padding:13px 8px;border-radius:11px;font-size:12px;font-weight:800}
+.action.primary{background:#3952df;border-color:#3952df;color:#fff;box-shadow:0 7px 15px #3952df2b}
+.action:hover{filter:brightness(.95)}
+.action:disabled{opacity:.5;cursor:not-allowed}
+.status{min-height:20px;font-size:12px;margin:11px 0 0;color:#ae3838}
+.ad-slot{margin-top:30px}
+.ad-label{font-size:10px;letter-spacing:.14em;font-weight:800;color:#8a96ad;text-align:center;margin:0 0 10px}
+.ad-placeholder{height:148px;display:flex;align-items:center;justify-content:space-between;gap:24px;overflow:hidden;border:1px solid #dbe2f2;border-radius:18px;background:#ecf1fc;padding:21px 28px;color:#284266}
+.ad-copy{position:relative;z-index:1;text-align:left}
+.ad-copy small{display:block;font-size:11px;font-weight:800;letter-spacing:.12em;color:#7083a4;text-transform:uppercase;margin-bottom:7px}
+.ad-copy strong{display:block;font-size:23px;letter-spacing:-.04em;color:#263b61}
+.ad-copy span{display:block;margin-top:5px;font-size:12px;color:#6a7d9d}
+.ad-graphic{display:block;flex:none;width:280px;height:130px;align-self:end}
+.explainer{display:flex;gap:17px;align-items:flex-start;margin-top:26px;padding:26px 30px}
+.explainer-mark{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:11px;background:#fff0bf;color:#795c0c;font-weight:850}
+.explainer h2{font-size:18px;margin:2px 0 8px}
+.explainer p{color:#5f6c85;line-height:1.65;margin:0;font-size:13px}
+footer{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #e4e8f2;font-size:12px;color:#77839b;padding:24px 0 38px}
+footer strong{color:#3244a9}
+#printSheet{display:none}
+@media(max-width:820px){.grid{grid-template-columns:1fr}.preview{position:static;grid-row:1}.qr-stage{min-height:280px}main{padding-top:38px}}
+@media(max-width:600px){.tag{display:none}.brand-text{font-size:21px}.shell{width:min(100% - 28px,1120px)}.intro{margin-bottom:25px}.intro p{font-size:15px}.hero-points{gap:8px 13px}.editor,.preview{padding:21px}.explainer{padding:20px}.frame-picker{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.ad-placeholder{height:220px;align-items:flex-start;padding:24px}.ad-copy strong{font-size:20px}.ad-graphic{width:165px;height:100px;align-self:end;margin-left:-45px;margin-right:-15px}}
+@media(max-width:430px){.field-grid,.form-row{grid-template-columns:1fr}.actions{grid-template-columns:1fr}.qr-stage{min-height:250px}.eyebrow{font-size:9px;letter-spacing:.12em}footer{flex-direction:column}}
+@media print{@page{size:A4;margin:18mm}body{background:#fff}header,main,footer{display:none!important}#printSheet{display:flex;min-height:250mm;align-items:center;justify-content:center;flex-direction:column;gap:12mm}#printSheet img{width:90mm;height:auto;max-height:150mm;object-fit:contain}#printLabel{font:12pt Arial,sans-serif;max-width:160mm;overflow-wrap:anywhere;text-align:center}}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js" defer></script>
+  <script defer>
+document.addEventListener('DOMContentLoaded', () => {
+  const $ = id => document.getElementById(id);
+  const el = {
+    picker: $('typePicker'), fields: $('fields'), source: $('matrixSource'), qr: $('qr'),
+    encoded: $('encoded'), status: $('status'), png: $('png'), pdf: $('pdf'),
+    size: $('size'), shape: $('shape'), eye: $('eye'), frame: $('frame'), framePicker: $('framePicker'),
+    caption: $('caption'), captionFont: $('captionFont'), captionField: $('captionField'), dark: $('dark'), hex: $('hex'),
+    second: $('second'), secondHex: $('secondHex'), gradient: $('gradient'),
+    borderColor: $('borderColor'), borderHex: $('borderHex'),
+    colorError: $('colorError'), logo: $('logo'), logoName: $('logoName'),
+    clearLogo: $('clearLogo'), printQr: $('printQr'), printLabel: $('printLabel')
+  };
+  const field = (title, name, placeholder = '', type = 'text', attrs = '') =>
+    `<div class="field"><label for="field-${name}">${title}</label><input id="field-${name}" name="${name}" type="${type}" placeholder="${placeholder}" ${attrs}></div>`;
+  const area = (title, name, placeholder = '') =>
+    `<div class="field"><label for="field-${name}">${title}</label><textarea id="field-${name}" name="${name}" placeholder="${placeholder}"></textarea></div>`;
+  const note = message => `<p class="field-note">${message}</p>`;
+  const linkField = (label, noteText) => field(label, 'url', 'https://example.com/file', 'url') + note(noteText);
+  const types = [
+    { id: 'link', label: 'Link', group: 'Everyday', fields: field('Website address', 'url', 'https://example.com', 'url') + note('The direct URL is embedded in your QR code.') },
+    { id: 'text', label: 'Text', group: 'Everyday', fields: area('Plain text', 'text', 'Type a short message') },
+    { id: 'email', label: 'E-mail', group: 'Everyday', fields: field('Recipient e-mail', 'email', 'hello@example.com', 'email') + field('Subject (optional)', 'subject') + area('Message (optional)', 'body') },
+    { id: 'phone', label: 'Call', group: 'Everyday', fields: field('Phone number', 'phone', '+1 416 555 0100', 'tel') },
+    { id: 'sms', label: 'SMS', group: 'Everyday', fields: field('Phone number', 'phone', '+1 416 555 0100', 'tel') + area('Message (optional)', 'message') },
+    { id: 'whatsapp', label: 'WhatsApp', group: 'Everyday', fields: field('Number with country code', 'phone', '14165550100', 'tel') + area('Pre-filled message (optional)', 'message') + note('Opens WhatsApp through its public wa.me link.') },
+    { id: 'wifi', label: 'Wi-Fi', group: 'Everyday', fields: field('Network name (SSID)', 'ssid') + `<div class="field"><label for="field-security">Security</label><select id="field-security" name="security"><option value="WPA">WPA / WPA2 / WPA3</option><option value="WEP">WEP</option><option value="nopass">No password</option></select></div>` + field('Password', 'password') + `<label class="check-line"><input type="checkbox" name="hidden"> Hidden network</label>` + note('Wi-Fi details are encoded in the QR image. Anyone who can scan it can read the password.') },
+    { id: 'vcard', label: 'Contact', group: 'Everyday', fields: `<div class="field-grid">${field('First name', 'first')}${field('Last name', 'last')}</div>` + field('Organization (optional)', 'org') + field('Job title (optional)', 'title') + field('Phone (optional)', 'phone', '+1 416 555 0100', 'tel') + field('E-mail (optional)', 'email', 'name@example.com', 'email') + field('Website (optional)', 'website', 'https://example.com', 'url') + note('Produces a standard vCard contact QR code.') },
+    { id: 'event', label: 'Event', group: 'More data', fields: field('Event name', 'title') + `<div class="field-grid">${field('Starts', 'start', '', 'datetime-local')}${field('Ends', 'end', '', 'datetime-local')}</div>` + field('Location (optional)', 'location') + area('Description (optional)', 'description') + note('Dates are converted from your browser’s local time into a calendar event.') },
+    { id: 'location', label: 'Location', group: 'More data', fields: `<div class="field-grid">${field('Latitude', 'lat', '43.6532', 'number', 'step="any" min="-90" max="90"')}${field('Longitude', 'lng', '-79.3832', 'number', 'step="any" min="-180" max="180"')}</div>` + note('Links directly to these coordinates in Google Maps.') },
+    { id: 'bitcoin', label: 'Bitcoin', group: 'More data', fields: field('Bitcoin address', 'address') + field('Amount in BTC (optional)', 'amount', '0.001', 'number', 'min="0" step="any"') },
+    { id: 'paypal', label: 'PayPal', group: 'More data', fields: field('PayPal.Me username', 'username') + note('Creates a direct PayPal.Me link. Check the recipient before sharing.') },
+    { id: 'product', label: 'Product data', group: 'More data', fields: area('Product or inventory text', 'text', 'SKU: 12345\nBatch: A1') + note('Plain QR text for product details; this is not a verified GS1 barcode.') },
+    { id: 'pdf', label: 'PDF link', group: 'Hosted links', fields: linkField('Public PDF URL', 'The PDF must already be hosted online. Its bytes are not stored inside this QR code.') },
+    { id: 'image', label: 'Image link', group: 'Hosted links', fields: linkField('Public image or gallery URL', 'Use a public page or file URL. This site does not upload or host images.') },
+    { id: 'video', label: 'Video link', group: 'Hosted links', fields: linkField('Public video URL', 'Use a public video page, such as a published video link.') },
+    { id: 'social', label: 'Social profile', group: 'Hosted links', fields: linkField('Social profile URL', 'For multiple profiles, use an existing public profile page or link hub.') },
+    { id: 'app', label: 'App store', group: 'Hosted links', fields: linkField('App Store or Play Store URL', 'One QR code links to one store URL. Device-specific routing would require a hosted page.') }
+  ];
+  const typeById = Object.fromEntries(types.map(type => [type.id, type]));
+  const savedFields = {};
+  let typeId = 'link';
+  let currentPayload = '';
+  let qrModel = null;
+  let logoImage = null;
+  let ready = false;
+  let timer;
+
+  for (const group of [...new Set(types.map(type => type.group))]) {
+    const section = document.createElement('div');
+    section.className = 'type-group';
+    const heading = document.createElement('p');
+    heading.className = 'type-group-title';
+    heading.textContent = group;
+    const list = document.createElement('div');
+    list.className = 'type-list';
+    for (const type of types.filter(item => item.group === group)) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'type-button';
+      button.dataset.type = type.id;
+      button.textContent = type.label;
+      list.append(button);
+    }
+    section.append(heading, list);
+    el.picker.append(section);
+  }
+
+  function saveFields() {
+    savedFields[typeId] = {};
+    for (const input of el.fields.querySelectorAll('[name]'))
+      savedFields[typeId][input.name] = input.type === 'checkbox' ? input.checked : input.value;
+  }
+  function chooseType(id) {
+    if (!typeById[id]) return;
+    if (el.fields.children.length) saveFields();
+    typeId = id;
+    el.fields.innerHTML = typeById[id].fields;
+    const defaults = id === 'link' && !savedFields[id] ? { url: 'https://example.com' } : {};
+    for (const input of el.fields.querySelectorAll('[name]')) {
+      const value = (savedFields[id] || defaults)[input.name];
+      if (value !== undefined) input.type === 'checkbox' ? input.checked = value : input.value = value;
+    }
+    for (const button of el.picker.querySelectorAll('button[data-type]')) {
+      const selected = button.dataset.type === id;
+      button.classList.toggle('active', selected);
+      button.setAttribute('aria-pressed', String(selected));
+    }
+    schedule();
+  }
+  const val = name => (el.fields.querySelector(`[name="${name}"]`)?.value || '').trim();
+  const checked = name => !!el.fields.querySelector(`[name="${name}"]`)?.checked;
+  const required = (name, label) => { const value = val(name); if (!value) throw Error(`Enter ${label}.`); return value; };
+  const directUrl = name => {
+    const value = required(name, 'a full URL beginning with https://');
+    try { const url = new URL(value); if (!['http:', 'https:'].includes(url.protocol) || !url.hostname) throw Error(); }
+    catch { throw Error('Enter a valid http:// or https:// URL.'); }
+    return value;
+  };
+  const escaped = value => value.replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/;/g, '\\;').replace(/,/g, '\\,');
+  const wifiEscaped = value => value.replace(/([\\;,:"])/g, '\\$1');
+  const dateUTC = value => {
+    const date = new Date(value);
+    if (!value || Number.isNaN(date.getTime())) throw Error('Enter a valid event start and end time.');
+    return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
+  };
+  function buildPayload() {
+    switch (typeId) {
+      case 'link': case 'pdf': case 'image': case 'video': case 'social': case 'app': return directUrl('url');
+      case 'text': case 'product': return required('text', 'some text');
+      case 'email': {
+        const address = required('email', 'an e-mail address');
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(address)) throw Error('Enter a valid e-mail address.');
+        const params = new URLSearchParams();
+        if (val('subject')) params.set('subject', val('subject'));
+        if (val('body')) params.set('body', val('body'));
+        return 'mailto:' + address + (params.size ? '?' + params.toString() : '');
+      }
+      case 'phone': {
+        const phone = required('phone', 'a phone number');
+        if (!/^[+\d().\s-]{5,}$/.test(phone)) throw Error('Enter a valid phone number.');
+        return 'tel:' + phone.replace(/[()\s-]/g, '');
+      }
+      case 'sms': {
+        const phone = required('phone', 'a phone number').replace(/[()\s-]/g, '');
+        if (!/^\+?\d{5,}$/.test(phone)) throw Error('Enter a valid phone number.');
+        return 'SMSTO:' + phone + ':' + val('message');
+      }
+      case 'whatsapp': {
+        const phone = required('phone', 'a phone number with country code').replace(/\D/g, '');
+        if (phone.length < 7 || phone.length > 15) throw Error('Enter a valid international phone number.');
+        return 'https://wa.me/' + phone + (val('message') ? '?text=' + encodeURIComponent(val('message')) : '');
+      }
+      case 'wifi': {
+        const ssid = required('ssid', 'a Wi-Fi network name');
+        const security = val('security');
+        if (security !== 'nopass' && !val('password')) throw Error('Enter the Wi-Fi password, or select “No password”.');
+        return `WIFI:T:${security};S:${wifiEscaped(ssid)};${security === 'nopass' ? '' : 'P:' + wifiEscaped(val('password')) + ';'}H:${checked('hidden') ? 'true' : 'false'};;`;
+      }
+      case 'vcard': {
+        const first = val('first'), last = val('last');
+        if (!first && !last) throw Error('Enter a first or last name.');
+        const lines = ['BEGIN:VCARD', 'VERSION:3.0', `N:${escaped(last)};${escaped(first)};;;`, `FN:${escaped([first, last].filter(Boolean).join(' '))}`];
+        for (const [name, tag] of [['org', 'ORG'], ['title', 'TITLE'], ['phone', 'TEL;TYPE=CELL'], ['email', 'EMAIL'], ['website', 'URL']])
+          if (val(name)) lines.push(`${tag}:${escaped(val(name))}`);
+        lines.push('END:VCARD');
+        return lines.join('\r\n');
+      }
+      case 'event': {
+        const title = required('title', 'an event name');
+        const start = dateUTC(val('start')), end = dateUTC(val('end'));
+        if (end <= start) throw Error('The event end must be after the start.');
+        const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'BEGIN:VEVENT', `DTSTART:${start}`, `DTEND:${end}`, `SUMMARY:${escaped(title)}`];
+        if (val('location')) lines.push(`LOCATION:${escaped(val('location'))}`);
+        if (val('description')) lines.push(`DESCRIPTION:${escaped(val('description'))}`);
+        lines.push('END:VEVENT', 'END:VCALENDAR');
+        return lines.join('\r\n');
+      }
+      case 'location': {
+        const lat = Number(required('lat', 'latitude')), lng = Number(required('lng', 'longitude'));
+        if (!Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180) throw Error('Enter valid latitude and longitude.');
+        return `https://www.google.com/maps?q=${lat},${lng}`;
+      }
+      case 'bitcoin': {
+        const address = required('address', 'a Bitcoin address');
+        if (!/^[a-zA-Z0-9]{26,90}$/.test(address)) throw Error('Check the Bitcoin address.');
+        const amount = val('amount');
+        if (amount && (!Number.isFinite(Number(amount)) || Number(amount) <= 0)) throw Error('Enter a positive BTC amount.');
+        return 'bitcoin:' + address + (amount ? '?amount=' + encodeURIComponent(amount) : '');
+      }
+      case 'paypal': {
+        const username = required('username', 'a PayPal.Me username');
+        if (!/^[a-zA-Z0-9._-]+$/.test(username)) throw Error('Enter a PayPal.Me username without spaces.');
+        return 'https://paypal.me/' + username;
+      }
+    }
+    throw Error('Choose a QR type.');
+  }
+
+  function schedule() { clearTimeout(timer); timer = setTimeout(render, 180); }
+  function setStatus(text) { el.status.textContent = text; }
+  function pathRound(ctx, x, y, w, h, radius) {
+    const r = Math.min(radius, w / 2, h / 2);
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+  function fillShape(ctx, x, y, w, style, color) {
+    ctx.fillStyle = color;
+    if (style === 'dots') { ctx.beginPath(); ctx.arc(x + w / 2, y + w / 2, w * .43, 0, Math.PI * 2); ctx.fill(); }
+    else if (style === 'rounded') { pathRound(ctx, x, y, w, w, w * .27); ctx.fill(); }
+    else ctx.fillRect(x, y, w, w);
+  }
+  function readableTextColor(hex) {
+    const channels = [1, 3, 5].map(index => parseInt(hex.slice(index, index + 2), 16));
+    return channels[0] * .299 + channels[1] * .587 + channels[2] * .114 > 155 ? '#173e2b' : '#ffffff';
+  }
+  function paint(size, frame = el.frame.value) {
+    if (!qrModel) return null;
+    // Frame proportions follow the actual artwork, so portrait styles export as portrait PNGs.
+    const layouts = {
+      none: { height: 1, qr: [.06, .06, .88] },
+      outline: { height: 1.27, qr: [.07, .065, .86] },
+      double: { height: 1.22, qr: [.07, .055, .86] },
+      rounded: { height: 1.27, qr: [.085, .075, .83] },
+      corners: { height: 1.27, qr: [.115, .125, .77] },
+      ticket: { height: 1.45, qr: [.14, .255, .72] },
+      caption: { height: 1.45, qr: [.10, .245, .80] },
+      pill: { height: 1.25, qr: [.07, .065, .86] },
+      topbar: { height: 1.27, qr: [.07, .07, .86] }
+    };
+    const layout = layouts[frame] || layouts.none;
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = Math.round(size * layout.height);
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return null;
+    const S = size, color = el.borderColor.value;
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const roundFill = (x, y, w, h, r, fill) => { ctx.fillStyle = fill; pathRound(ctx, x*S, y*S, w*S, h*S, r*S); ctx.fill(); };
+    const roundStroke = (x, y, w, h, r, width = .012) => { ctx.strokeStyle = color; ctx.lineWidth = Math.max(1, width*S); pathRound(ctx, x*S, y*S, w*S, h*S, r*S); ctx.stroke(); };
+    const label = (el.caption.value.trim() || 'SCAN ME').slice(0, 24);
+    const font = { sans: 'Arial, sans-serif', serif: 'Georgia, serif', mono: 'monospace' }[el.captionFont.value] || 'Arial, sans-serif';
+    const drawText = (y, width, onColor = true, fontSize = .061) => {
+      ctx.fillStyle = onColor ? readableTextColor(color) : color;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.font = `800 ${Math.round(S * fontSize)}px ${font}`;
+      ctx.fillText(label, S*.5, S*y, S*width);
+    };
+
+    if (frame === 'outline') {
+      roundStroke(.025, .025, .95, 1.20, .055, .025);
+      roundFill(.255, 1.045, .49, .145, .073, color);
+    } else if (frame === 'double') {
+      roundStroke(.025, .02, .95, 1.18, .035, .018);
+      roundFill(.025, 1.02, .95, .18, .025, color);
+    } else if (frame === 'rounded') {
+      roundStroke(.035, .025, .93, 1.20, .09, .017);
+      roundFill(.225, 1.04, .55, .14, .07, color);
+    } else if (frame === 'corners') {
+      ctx.strokeStyle = color; ctx.lineWidth = S*.025; ctx.beginPath(); ctx.arc(S*.5, S*.51, S*.485, 0, Math.PI*2); ctx.stroke();
+    } else if (frame === 'ticket') {
+      roundFill(.055, .03, .89, 1.39, .085, color);
+      roundFill(.11, .16, .78, 1.02, .025, '#ffffff');
+      roundFill(.395, .075, .21, .035, .017, '#ffffff');
+      ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(S*.5, S*1.345, S*.025, 0, Math.PI*2); ctx.fill();
+    } else if (frame === 'caption') {
+      roundStroke(.055, .145, .89, 1.26, .065, .02);
+      roundFill(.35, .09, .30, .15, .04, color);
+      roundFill(.39, .055, .22, .075, .03, color);
+      roundFill(.18, 1.245, .64, .115, .055, color);
+    } else if (frame === 'pill') {
+      roundFill(.23, 1.045, .54, .145, .073, color);
+    } else if (frame === 'topbar') {
+      roundStroke(.035, .025, .93, 1.20, .045, .018);
+      ctx.fillStyle = color;
+      ctx.beginPath(); ctx.moveTo(S*.055, S*1.02); ctx.lineTo(S*.945, S*1.02);
+      ctx.lineTo(S*.955, S*1.095); ctx.lineTo(S*.945, S*1.18);
+      ctx.lineTo(S*.055, S*1.18); ctx.lineTo(S*.045, S*1.095); ctx.closePath(); ctx.fill();
+    }
+
+    // Draw four modules of white quiet zone inside each QR region.
+    const [qx, qy, qw] = layout.qr;
+    const count = qrModel.getModuleCount();
+    const unit = qw * S / (count + 8);
+    const ox = qx*S + unit*4, oy = qy*S + unit*4;
+    const fill = el.gradient.checked ? ctx.createLinearGradient(ox, oy, ox + count*unit, oy + count*unit) : el.dark.value;
+    if (el.gradient.checked) { fill.addColorStop(0, el.dark.value); fill.addColorStop(1, el.second.value); }
+    const isEye = (row, col) => (row < 7 && col < 7) || (row < 7 && col >= count - 7) || (row >= count - 7 && col < 7);
+    for (let row = 0; row < count; row++) for (let col = 0; col < count; col++) {
+      if (!isEye(row, col) && qrModel.isDark(row, col))
+        fillShape(ctx, ox + col*unit, oy + row*unit, unit, el.shape.value, fill);
+    }
+    for (const [col, row] of [[0,0],[count-7,0],[0,count-7]]) {
+      const x = ox + col*unit, y = oy + row*unit, style = el.eye.value;
+      fillShape(ctx, x, y, unit*7, style, fill);
+      fillShape(ctx, x+unit, y+unit, unit*5, style, '#ffffff');
+      fillShape(ctx, x+unit*2, y+unit*2, unit*3, style, fill);
+    }
+    if (logoImage) {
+      const cx = ox + count*unit/2, cy = oy + count*unit/2, backing = count*unit*.22;
+      pathRound(ctx, cx-backing/2, cy-backing/2, backing, backing, backing*.15);
+      ctx.fillStyle = '#ffffff'; ctx.fill();
+      const max = backing*.76, scale = Math.min(max/logoImage.width, max/logoImage.height);
+      const w = logoImage.width*scale, h = logoImage.height*scale;
+      ctx.drawImage(logoImage, cx-w/2, cy-h/2, w, h);
+    }
+    if (frame === 'outline') drawText(1.117, .43, true, .049);
+    if (frame === 'double') drawText(1.11, .84, true, .064);
+    if (frame === 'rounded') drawText(1.11, .48, true, .052);
+    if (frame === 'corners') drawText(1.12, .84, false, .062);
+    if (frame === 'ticket') drawText(1.275, .72, true, .068);
+    if (frame === 'caption') drawText(1.303, .58, true, .047);
+    if (frame === 'pill') drawText(1.117, .48, true, .052);
+    if (frame === 'topbar') drawText(1.105, .83, true, .064);
+    return canvas;
+  }
+  function renderFrameThumbnails() {
+    if (!qrModel) return;
+    for (const button of el.framePicker.querySelectorAll('button[data-frame]')) {
+      const art = button.querySelector('.frame-art');
+      art.replaceChildren(paint(100, button.dataset.frame));
+    }
+  }
+  function render() {
+    ready = false;
+    el.png.disabled = el.pdf.disabled = true;
+    el.qr.replaceChildren();
+    el.source.replaceChildren();
+    qrModel = null;
+    try {
+      currentPayload = buildPayload();
+      el.encoded.textContent = currentPayload;
+      if (typeof QRCode === 'undefined') throw Error('The QR library could not load. Check your connection and refresh.');
+      const code = new QRCode(el.source, { text: currentPayload, width: 256, height: 256, correctLevel: logoImage ? QRCode.CorrectLevel.H : QRCode.CorrectLevel.M });
+      qrModel = code._oQRCode;
+      if (!qrModel || typeof qrModel.getModuleCount !== 'function') throw Error('QR generation is unavailable in this browser.');
+      const preview = paint(640);
+      if (!preview) throw Error('Canvas is unavailable in this browser.');
+      el.qr.append(preview);
+      renderFrameThumbnails();
+      ready = true;
+      el.png.disabled = el.pdf.disabled = false;
+      setStatus('');
+    } catch (error) {
+      el.encoded.textContent = currentPayload || 'Nothing yet';
+      setStatus(error.message && !/overflow/i.test(error.message) ? error.message : 'This content is too long for a QR code. Try shorter text.');
+    }
+  }
+  function bindHex(picker, input) {
+    picker.addEventListener('input', () => { input.value = picker.value.toUpperCase(); el.colorError.textContent = ''; schedule(); });
+    function apply(showError) {
+      const match = /^#?([\da-fA-F]{6})$/.exec(input.value.trim());
+      if (!match) { if (showError) el.colorError.textContent = 'Enter a 6-digit hex color.'; return; }
+      picker.value = '#' + match[1].toUpperCase();
+      input.value = picker.value.toUpperCase();
+      el.colorError.textContent = '';
+      schedule();
+    }
+    input.addEventListener('input', () => { el.colorError.textContent = ''; apply(false); });
+    input.addEventListener('blur', () => apply(true));
+    input.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); input.blur(); } });
+  }
+  el.picker.addEventListener('click', event => { const button = event.target.closest('button[data-type]'); if (button) chooseType(button.dataset.type); });
+  el.fields.addEventListener('input', schedule);
+  el.fields.addEventListener('change', schedule);
+  for (const control of [el.size, el.shape, el.eye, el.caption, el.captionFont, el.gradient]) control.addEventListener('input', schedule);
+  el.framePicker.addEventListener('click', event => {
+    const button = event.target.closest('button[data-frame]');
+    if (!button) return;
+    el.frame.value = button.dataset.frame;
+    el.captionField.hidden = el.frame.value === 'none';
+    for (const option of el.framePicker.querySelectorAll('button[data-frame]')) {
+      const selected = option === button;
+      option.classList.toggle('active', selected);
+      option.setAttribute('aria-pressed', String(selected));
+    }
+    schedule();
+  });
+  bindHex(el.dark, el.hex);
+  bindHex(el.second, el.secondHex);
+  bindHex(el.borderColor, el.borderHex);
+  el.logo.addEventListener('change', () => {
+    const file = el.logo.files?.[0];
+    if (!file) return;
+    if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.type) || file.size > 2 * 1024 * 1024) { setStatus('Choose a PNG, JPEG, or WebP logo under 2 MB.'); el.logo.value = ''; return; }
+    const url = URL.createObjectURL(file);
+    const image = new Image();
+    image.onload = () => { URL.revokeObjectURL(url); logoImage = image; el.logoName.textContent = file.name; el.clearLogo.hidden = false; schedule(); };
+    image.onerror = () => { URL.revokeObjectURL(url); setStatus('This image could not be opened.'); };
+    image.src = url;
+  });
+  el.clearLogo.addEventListener('click', () => { logoImage = null; el.logo.value = ''; el.logoName.textContent = ''; el.clearLogo.hidden = true; schedule(); });
+  el.png.addEventListener('click', () => {
+    if (!ready) return;
+    const canvas = paint(Number(el.size.value));
+    if (!canvas) return;
+    const a = document.createElement('a');
+    a.download = `justmakeqr-${typeId}-${el.size.value}.png`;
+    a.href = canvas.toDataURL('image/png');
+    document.body.append(a); a.click(); a.remove();
+  });
+  el.pdf.addEventListener('click', () => {
+    if (!ready) return;
+    const canvas = paint(Number(el.size.value));
+    if (!canvas) return;
+    el.printQr.src = canvas.toDataURL('image/png');
+    el.printLabel.textContent = typeId === 'link' ? currentPayload : '';
+    window.print();
+  });
+  chooseType('link');
+  window.addEventListener('load', render);
+});
+  </script>
+</head>
+<body>
+  <header><div class="shell"><a class="brand" href="#top" aria-label="JustMakeQR.com home"><svg class="brand-icon" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="currentColor"/><path fill="#fff" d="M9 9h14v14H9zm16 0h14v14H25zM9 25h14v14H9z"/><path fill="currentColor" d="M13 13h6v6h-6zm16 0h6v6h-6zM13 29h6v6h-6z"/><circle cx="32" cy="32" r="6" fill="#ffce59"/></svg><span class="brand-text">JustMake<span>QR</span><b>.com</b></span></a><div class="tag"><span class="tag-dot"></span> Free. No sign-up. No catches.</div></div></header>
+  <main class="shell">
+    <div id="top" class="intro"><div class="eyebrow"><span class="eyebrow-line"></span> THE QR TOOL THAT GETS OUT OF YOUR WAY</div><h1>Just make a QR.<br><span>That’s it.</span></h1><p>Pick what goes in. Make it yours. Download it. No email, no payment, and no surprise expiry tricks.</p><div class="hero-points"><span>✓ Free PNG &amp; PDF</span><span>✓ Made in your browser</span><span>✓ Direct, static QR codes</span></div></div>
+    <div class="grid">
+      <section class="card editor" aria-label="QR code settings">
+        <h2>1. Choose your content</h2>
+        <div id="typePicker" aria-label="QR code content type"></div>
+        <div id="fields" class="fields"></div>
+        <h2 class="design-heading">2. Make it yours</h2>
+        <div class="form-row"><div><label for="shape">Dot shape</label><select id="shape"><option value="square">Classic squares</option><option value="rounded" selected>Soft squares</option><option value="dots">Dots</option></select></div><div><label for="eye">Corner style</label><select id="eye"><option value="square">Classic</option><option value="rounded" selected>Rounded</option></select></div></div>
+        <div class="form-row"><div><label for="size">Download size</label><select id="size"><option value="512">512 × 512 px</option><option value="1024" selected>1024 × 1024 px</option><option value="2048">2048 × 2048 px</option></select></div></div>
+        <label class="subtle-label" id="frameLabel">Frame style</label><div id="framePicker" class="frame-picker" role="group" aria-labelledby="frameLabel">
+          <button type="button" class="frame-choice active" data-frame="none" aria-pressed="true"><span class="frame-art" aria-hidden="true"></span>Plain</button>
+          <button type="button" class="frame-choice" data-frame="outline" aria-pressed="false"><span class="frame-art" aria-hidden="true"></span>Classic</button>
+          <button type="button" class="frame-choice" data-frame="double" aria-pressed="false"><span class="frame-art" aria-hidden="true"></span>Solid base</button>
+          <button type="button" class="frame-choice" data-frame="rounded" aria-pressed="false"><span class="frame-art" aria-hidden="true"></span>Soft card</button>
+          <button type="button" class="frame-choice" data-frame="corners" aria-pressed="false"><span class="frame-art" aria-hidden="true"></span>Circle</button>
+          <button type="button" class="frame-choice" data-frame="ticket" aria-pressed="false"><span class="frame-art" aria-hidden="true"></span>Phone</button>
+          <button type="button" class="frame-choice" data-frame="caption" aria-pressed="false"><span class="frame-art" aria-hidden="true"></span>Clipboard</button>
+          <button type="button" class="frame-choice" data-frame="pill" aria-pressed="false"><span class="frame-art" aria-hidden="true"></span>Label pill</button>
+          <button type="button" class="frame-choice" data-frame="topbar" aria-pressed="false"><span class="frame-art" aria-hidden="true"></span>Ribbon</button>
+        </div><input id="frame" type="hidden" value="none">
+        <div id="captionField" class="field subtle-label" hidden><div class="field-grid"><div><label for="caption">Frame phrase</label><input id="caption" maxlength="24" value="SCAN ME" placeholder="SCAN ME"></div><div><label for="captionFont">Phrase font</label><select id="captionFont"><option value="sans">Sans-serif</option><option value="serif">Serif</option><option value="mono">Monospace</option></select></div></div></div>
+        <div class="field subtle-label"><label for="borderHex">Frame color</label><div class="color-control"><input id="borderColor" type="color" value="#24325e" aria-label="Choose frame color"><input id="borderHex" type="text" value="#24325E" maxlength="7" spellcheck="false" autocomplete="off" aria-label="Frame six digit hex color code"></div></div>
+        <div class="form-row"><div><label for="hex">QR color</label><div class="color-control"><input id="dark" type="color" value="#24325e" aria-label="Choose QR color"><input id="hex" type="text" value="#24325E" maxlength="7" spellcheck="false" autocomplete="off" aria-describedby="colorError" aria-label="Six digit hex color code"></div><p id="colorError" class="color-error" role="status"></p></div><div><label for="second">Second color</label><div class="color-control"><input id="second" type="color" value="#3952df" aria-label="Choose second color"><input id="secondHex" type="text" value="#3952DF" maxlength="7" spellcheck="false" autocomplete="off" aria-label="Second six digit hex color code"></div></div></div>
+        <label class="check-line"><input id="gradient" type="checkbox"> Use gradient</label>
+        <label for="logo">Center logo (PNG, JPEG, or WebP)</label><div class="logo-row"><input id="logo" type="file" accept="image/png,image/jpeg,image/webp"><button id="clearLogo" class="small-button" type="button" hidden>Remove logo</button><span id="logoName" class="logo-name"></span></div><p class="hint">Stored only in this browser tab. A small white backing keeps it legible.</p>
+        <div class="notice"><strong>Yours from the start.</strong> Your QR content is made in your browser. We don’t put a redirect between your code and its destination. A linked page must remain online for its link to work.</div>
+      </section>
+      <section class="card preview" aria-label="QR code preview"><p class="preview-title">LIVE PREVIEW</p><div class="qr-stage"><div id="qr" role="img" aria-label="Generated QR code"></div></div><div id="matrixSource" aria-hidden="true"></div><p class="encoded"><strong>Encoded content:</strong> <span id="encoded"></span></p><div class="actions"><button id="png" class="action primary" type="button" disabled>Download PNG</button><button id="pdf" class="action" type="button" disabled>Print / Save PDF</button></div><p id="status" class="status" role="status"></p><p class="hint">Always test the finished code with your phone before printing it.</p></section>
+    </div>
+    <section class="ad-slot" aria-label="Advertisement preview">
+      <p class="ad-label">ADVERTISEMENT · LAYOUT PREVIEW</p>
+      <div class="ad-placeholder">
+        <div class="ad-copy"><small>Example ad creative</small><strong>Your ad could appear here.</strong><span>Sample artwork to show the space an ad may occupy.</span></div>
+        <svg class="ad-graphic" viewBox="0 0 280 130" aria-hidden="true"><circle cx="167" cy="122" r="106" fill="#d9e4f9"/><circle cx="220" cy="76" r="72" fill="#b7cbf4"/><rect x="68" y="21" width="120" height="97" rx="14" fill="#fff" transform="rotate(-11 68 21)"/><rect x="86" y="35" width="84" height="8" rx="4" fill="#e4eaf7" transform="rotate(-11 86 35)"/><rect x="91" y="57" width="63" height="8" rx="4" fill="#e4eaf7" transform="rotate(-11 91 57)"/><rect x="168" y="35" width="84" height="83" rx="16" fill="#5571dd" transform="rotate(9 168 35)"/><circle cx="208" cy="75" r="24" fill="#ffce59"/><path d="m198 75 7 7 14-16" fill="none" stroke="#37528c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </section>
+    <section class="card explainer"><div class="explainer-mark" aria-hidden="true">?</div><div><h2>Will this QR code expire?</h2><p>No. This static QR code contains your content or direct link. We do not insert our own short link. For PDF, image, video, social, and app destinations, you provide an existing public URL; the file or page must stay online. To make a PDF of the QR artwork, choose “Print / Save PDF” and select your browser’s “Save as PDF” destination.</p></div></section>
+  </main>
+  <footer class="shell"><strong>JustMakeQR.com</strong><span>Make it. Download it. Done.</span></footer>
+  <div id="printSheet"><img id="printQr" alt="Printable QR code"><div id="printLabel"></div></div>
+</body>
+</html>
