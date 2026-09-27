@@ -4,7 +4,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f8fd">
+  <meta name="theme-color" content="#f6f4ed">
   <meta name="description" content="Make free static QR codes without an account, email or subscription. Your content stays in your browser. Add a logo, download PNG, or print to PDF.">
   <title>Free QR Code Generator — No Sign-Up, No Tracking | JustMakeQR</title>
   <link rel="canonical" href="https://justmakeqr.com/">
@@ -68,135 +68,7 @@
 }
   </script>
   <link rel="icon" type="image/svg+xml" sizes="any" href="favicon.svg">
-  <style>
-:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#202a43;background:#f7f8fd}
-*{box-sizing:border-box}
-html{scroll-behavior:auto}
-body{margin:0;background:radial-gradient(circle at 88% 6%,#e9edff 0,transparent 30%),#f7f8fd}
-button,input,textarea,select{font:inherit}
-button{cursor:pointer}
-.shell{width:min(1120px,calc(100% - 40px));margin:auto}
-header{border-bottom:1px solid #e6e9f3;background:#ffffffed;backdrop-filter:blur(12px)}
-header .shell{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:#3952df;white-space:nowrap}
-.brand-icon{width:39px;height:39px;flex:none;filter:drop-shadow(0 4px 6px #3952df25)}
-.brand-text{font-size:23px;font-weight:850;letter-spacing:-.075em;color:#1e2945}
-.brand-text span{color:#3952df;letter-spacing:-.06em}
-.brand-text b{display:inline-block;margin-left:2px;vertical-align:3px;border-radius:7px;padding:3px 5px;background:#ffce59;color:#283253;font-size:13px;font-weight:850;letter-spacing:-.025em}
-.tag{display:flex;align-items:center;gap:9px;color:#34437c;background:#eef1ff;border:1px solid #dde3ff;border-radius:100px;padding:9px 14px;font-size:12px;font-weight:750;white-space:nowrap}
-.tag-dot{width:8px;height:8px;border-radius:50%;background:#5e67e8;box-shadow:0 0 0 4px #dbe0ff}
-main{padding:51px 0 60px}
-.intro{max-width:760px;margin:0 0 34px}
-.eyebrow{display:flex;align-items:center;gap:9px;color:#4057d4;font-size:11px;font-weight:850;letter-spacing:.15em}
-.eyebrow-line{width:20px;height:3px;background:#ffce59;border-radius:3px}
-h1{font-size:clamp(43px,5.8vw,70px);line-height:1.045;letter-spacing:-.075em;margin:17px 0 16px;font-weight:850}
-h1 span{color:#3952df}
-.intro p{color:#5c6882;line-height:1.65;margin:0;font-size:17px;max-width:650px}
-.hero-points{display:flex;flex-wrap:wrap;gap:9px 21px;margin-top:23px;color:#344676;font-size:12px;font-weight:750}
-.hero-points span{white-space:nowrap}
-.grid{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:22px;align-items:start}
-.card{background:#fff;border:1px solid #e2e7f2;border-radius:22px;box-shadow:0 14px 45px #2432730a}
-.editor{padding:30px}
-.preview{padding:23px;text-align:center;position:sticky;top:20px;border-top:4px solid #3952df}
-h2{margin:0 0 21px;font-size:22px;letter-spacing:-.045em}
-label{display:block;font-size:13px;font-weight:750;margin:0 0 9px;color:#263454}
-.type-group{margin:0 0 16px}
-.type-group-title{margin:0 0 9px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8390a9;font-weight:850}
-.type-list{display:flex;flex-wrap:wrap;gap:7px}
-.type-button{border:1px solid #dfe4ef;border-radius:9px;background:#fafbff;padding:9px 11px;color:#53607a;font-size:12px;font-weight:700;transition:background .15s,border-color .15s,transform .15s}
-.type-button:hover{border-color:#aab7f6;transform:translateY(-1px)}
-.type-button.active{color:#3048c6;background:#edf0ff;border-color:#8f9eed;box-shadow:inset 0 0 0 1px #8f9eed}
-button:focus-visible,.brand:focus-visible{outline:3px solid #ffce59;outline-offset:3px}
-.fields{border-top:1px solid #e8ebf4;margin-top:24px;padding-top:23px}
-.field{margin-bottom:17px}
-.field:last-child{margin-bottom:0}
-textarea,input:not([type=color]):not([type=file]):not([type=checkbox]),select{display:block;width:100%;border:1px solid #ced6e6;background:#fff;border-radius:10px;padding:12px 13px;outline:0;color:#263454}
-textarea:focus,input:not([type=color]):not([type=file]):not([type=checkbox]):focus,select:focus{border-color:#5267e1;box-shadow:0 0 0 3px #3952df1e}
-.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.field-note{font-size:12px;line-height:1.55;color:#68758d;margin:11px 0 0}
-textarea{min-height:130px;resize:vertical}
-.hint{font-size:12px;line-height:1.5;color:#78849a;margin:8px 0 0}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:16px}
-.design-heading{margin:32px 0 15px;padding-top:24px;border-top:1px solid #e8ebf4;font-size:20px}
-.color-control{display:flex;align-items:center;gap:11px;border:1px solid #ced6e6;padding:8px 11px;height:48px;border-radius:10px}
-input[type=color]{width:30px;height:30px;border:0;background:none;padding:0;cursor:pointer}
-.color-control input[type=text]:not([type=color]):not([type=file]){width:92px;border:0;outline:0;color:#53607a;font-size:13px;padding:5px 0;font-variant-numeric:tabular-nums;text-transform:uppercase;box-shadow:none}
-.color-control:focus-within{border-color:#5267e1;box-shadow:0 0 0 3px #3952df1e}
-.color-error{color:#ae3838;font-size:12px;min-height:18px;margin:6px 0 0}
-.subtle-label{margin-top:16px}
-.check-line{display:flex;align-items:center;gap:8px;font-size:13px;color:#53607a;margin:15px 0;cursor:pointer}
-.check-line input{accent-color:#3952df}
-.logo-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
-.logo-row input{max-width:220px;font-size:12px;color:#56647e}
-.logo-row input::file-selector-button{border:1px solid #ced6e6;border-radius:8px;background:#f4f6ff;color:#344ac1;padding:8px 11px;font-weight:750;margin-right:10px;cursor:pointer}
-.small-button{border:1px solid #ced6e6;border-radius:9px;background:white;color:#4055c2;padding:8px 11px;font-size:12px;font-weight:700}
-.logo-name{font-size:12px;color:#65738d;overflow-wrap:anywhere}
-.frame-picker{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:9px}
-.frame-choice{min-width:0;border:1px solid #dfe4ef;border-radius:12px;background:#fff;padding:8px 5px;color:#59667e;font-size:11px;font-weight:700;transition:border-color .15s,transform .15s}
-.frame-choice:hover{border-color:#9daaf1;transform:translateY(-1px)}
-.frame-choice.active{border-color:#5267e1;background:#f1f3ff;box-shadow:0 0 0 2px #3952df17;color:#3048c6}
-.frame-art{display:grid;place-items:center;height:88px;margin:0 auto 6px}
-.frame-art canvas{display:block;max-width:72px;max-height:86px;width:auto;height:auto}
-.notice{background:#f2f4ff;border:1px solid #dde3ff;border-radius:13px;padding:15px 16px;color:#405178;font-size:13px;line-height:1.6;margin-top:28px}
-.notice strong{color:#283fb8}
-.qr-stage{min-height:342px;display:grid;place-items:center;background:repeating-conic-gradient(#f4f6fc 0% 25%,#fafbff 0% 50%) 50% / 20px 20px;border:1px solid #edf0f8;border-radius:17px;padding:20px;overflow:hidden}
-#qr{display:flex;align-items:center;justify-content:center;width:100%;filter:drop-shadow(0 12px 20px #26345416)}
-#qr canvas{max-width:100%;max-height:390px;width:auto;height:auto}
-#matrixSource{display:none}
-.preview-title{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;font-weight:850;color:#687791;text-align:left;margin:0 0 15px}
-.preview-title:before{content:"";width:7px;height:7px;border-radius:50%;background:#38b782}
-.encoded{font-size:12px;color:#63718c;text-align:left;line-height:1.5;overflow-wrap:anywhere;margin:17px 0 18px;max-height:96px;overflow-y:auto}
-.encoded strong{color:#2b385a}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.action{border:1px solid #cfd7ea;color:#344ac1;background:#fff;padding:13px 8px;border-radius:11px;font-size:12px;font-weight:800}
-.action.primary{background:#3952df;border-color:#3952df;color:#fff;box-shadow:0 7px 15px #3952df2b}
-.action:hover{filter:brightness(.95)}
-.action:disabled{opacity:.5;cursor:not-allowed}
-.status{min-height:20px;font-size:12px;margin:11px 0 0;color:#ae3838}
-.ad-slot{margin-top:30px}
-.ad-label{font-size:10px;letter-spacing:.14em;font-weight:800;color:#8a96ad;text-align:center;margin:0 0 10px}
-.ad-placeholder{height:148px;display:flex;align-items:center;justify-content:space-between;gap:24px;overflow:hidden;border:1px solid #dbe2f2;border-radius:18px;background:#ecf1fc;padding:21px 28px;color:#284266}
-.ad-copy{position:relative;z-index:1;text-align:left}
-.ad-copy small{display:block;font-size:11px;font-weight:800;letter-spacing:.12em;color:#7083a4;text-transform:uppercase;margin-bottom:7px}
-.ad-copy strong{display:block;font-size:23px;letter-spacing:-.04em;color:#263b61}
-.ad-copy span{display:block;margin-top:5px;font-size:12px;color:#6a7d9d}
-.ad-graphic{display:block;flex:none;width:280px;height:130px;align-self:end}
-.explainer{display:flex;gap:17px;align-items:flex-start;margin-top:26px;padding:26px 30px}
-.explainer-mark{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:11px;background:#fff0bf;color:#795c0c;font-weight:850}
-.explainer h2{font-size:18px;margin:2px 0 8px}
-.explainer p{color:#5f6c85;line-height:1.65;margin:0;font-size:13px}
-footer{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #e4e8f2;font-size:12px;color:#77839b;padding:24px 0 38px}
-footer strong{color:#3244a9}
-#printSheet{display:none}
-@media(max-width:820px){.grid{grid-template-columns:1fr}.preview{position:static;grid-row:1}.qr-stage{min-height:280px}main{padding-top:38px}}
-@media(max-width:600px){.tag{display:none}.brand-text{font-size:21px}.shell{width:min(100% - 28px,1120px)}.intro{margin-bottom:25px}.intro p{font-size:15px}.hero-points{gap:8px 13px}.editor,.preview{padding:21px}.explainer{padding:20px}.frame-picker{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:600px){.ad-placeholder{height:220px;align-items:flex-start;padding:24px}.ad-copy strong{font-size:20px}.ad-graphic{width:165px;height:100px;align-self:end;margin-left:-45px;margin-right:-15px}}
-@media(max-width:430px){.field-grid,.form-row{grid-template-columns:1fr}.actions{grid-template-columns:1fr}.qr-stage{min-height:250px}.eyebrow{font-size:9px;letter-spacing:.12em}footer{flex-direction:column}}
-@media print{@page{size:A4;margin:18mm}body{background:#fff}header,main,footer{display:none!important}#printSheet{display:flex;min-height:250mm;align-items:center;justify-content:center;flex-direction:column;gap:12mm}#printSheet img{width:90mm;height:auto;max-height:150mm;object-fit:contain}#printLabel{font:12pt Arial,sans-serif;max-width:160mm;overflow-wrap:anywhere;text-align:center}}
-
-.quick-links{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:20px;font-size:12px}
-.quick-links a,.notice a,.info-section a,footer a{color:#344ac1;text-underline-offset:4px}
-.info-section{margin-top:48px;padding-top:32px;border-top:1px solid #dde3ef;scroll-margin-top:24px}
-.info-section h2{font-size:clamp(23px,3vw,30px);letter-spacing:-.045em;margin:0 0 18px}
-.info-section h3{font-size:16px;letter-spacing:-.02em;margin:0 0 9px;color:#263454}
-.info-section p{font-size:14px;line-height:1.75;color:#5c6881;margin:0 0 14px}
-.section-kicker{font-size:10px!important;font-weight:800;letter-spacing:.13em;color:#4057d4!important;margin-bottom:12px!important}
-.section-intro{max-width:840px}
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;list-style:none;counter-reset:steps;padding:0;margin:26px 0 0}
-.steps li{counter-increment:steps}
-.steps li::before{content:"0" counter(steps);display:block;color:#4057d4;font-size:12px;font-weight:800;margin-bottom:14px;font-variant-numeric:tabular-nums}
-.use-cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:24px}
-.faq-list{max-width:900px}
-.faq-list details{border-bottom:1px solid #dde3ef;padding:0 0 17px;margin-bottom:17px}
-.faq-list summary{font-size:15px;font-weight:750;line-height:1.5;color:#263454;cursor:pointer}
-.faq-list summary:focus-visible{outline:3px solid #ffce59;outline-offset:4px}
-.faq-list details p{margin:13px 0 0;padding-right:20px}
-.privacy-section{max-width:900px}
-.privacy-section strong{color:#263454}
-.source-note{font-size:12px!important;margin-top:22px!important}
-@media(max-width:700px){.steps,.use-cases{grid-template-columns:1fr;gap:16px}.info-section{margin-top:34px;padding-top:26px}.steps li::before{margin-bottom:7px}footer{flex-wrap:wrap}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  </style>
+  <link rel="stylesheet" href="styles.css">
   <script src="vendor/qrcode.min.js" defer></script>
   <script defer>
 document.addEventListener('DOMContentLoaded', () => {
@@ -598,23 +470,26 @@ document.addEventListener('DOMContentLoaded', () => {
   </script>
 </head>
 <body>
-  <header><div class="shell"><a class="brand" href="#top" aria-label="JustMakeQR.com home"><svg class="brand-icon" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="currentColor"/><path fill="#fff" d="M9 9h14v14H9zm16 0h14v14H25zM9 25h14v14H9z"/><path fill="currentColor" d="M13 13h6v6h-6zm16 0h6v6h-6zM13 29h6v6h-6z"/><circle cx="32" cy="32" r="6" fill="#ffce59"/></svg><span class="brand-text">JustMake<span>QR</span><b>.com</b></span></a><div class="tag"><span class="tag-dot"></span> No account. No tracking.</div></div></header>
+  <header><div class="shell">
+    <a class="brand" href="#top" aria-label="JustMakeQR.com home"><svg class="brand-icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="1" y="1" width="46" height="46" rx="2" fill="#f3d34a"/><path fill="currentColor" d="M8 8h14v14H8zm18 0h14v14H26zM8 26h14v14H8zM26 26h6v6h-6zm8 0h6v14h-6zm-8 8h6v6h-6z"/><path fill="#f3d34a" d="M12 12h6v6h-6zm18 0h6v6h-6zM12 30h6v6h-6z"/></svg><span class="brand-text">JustMakeQR<span>.com</span></span></a>
+    <div class="header-note"><span class="status-square" aria-hidden="true"></span> A SMALL TOOL. NOTHING TO JOIN.</div>
+    <a class="header-privacy" href="#privacy">No tracking ↗</a>
+  </div></header>
   <main class="shell">
     <div id="top" class="intro">
-      <div class="eyebrow"><span class="eyebrow-line"></span> FREE QR CODE GENERATOR</div>
-      <h1>Just make a QR.<br><span>No strings attached.</span></h1>
-      <p>A free QR code generator with no account, no email sign-up, and no subscription. Your content stays in your browser. Make your code, download it, and get on with your day.</p>
-      <div class="hero-points"><span>✓ No tracking</span><span>✓ No content uploads</span><span>✓ No expiry fees</span><span>✓ Free PNG &amp; print-to-PDF</span></div>
-      <nav class="quick-links" aria-label="Page sections"><a href="#how-it-works">How it works</a><a href="#faq">Questions, answered</a><a href="#privacy">What stays private</a></nav>
+      <div class="intro-heading"><div class="eyebrow">FREE QR CODE GENERATOR</div><h1>Just make a <span>QR.</span></h1><p class="intro-caption">Make it. Take it. That’s it.</p></div>
+      <div class="intro-copy"><p class="plain-promise">No account. No email.<br>No subscription.</p><p>Your content stays in your browser.<br>Free static QR codes. Yours to keep.</p>
+        <nav class="quick-links" aria-label="Page sections"><a href="#how-it-works">How it works</a><a href="#faq">FAQ</a><a href="#privacy">Privacy</a></nav>
+      </div>
     </div>
     <noscript><p class="notice">The QR generator needs JavaScript to create images in your browser. The instructions and answers below remain available without it.</p></noscript>
     <div class="grid" id="qr-tool">
       <section class="card editor" aria-label="QR code settings">
-        <h2>1. Choose your content</h2>
+        <h2 class="panel-heading"><span>01 / INPUT</span><b>What goes in?</b></h2>
         <div id="typePicker" aria-label="QR code content type"></div>
         <div id="fields" class="fields"></div>
-        <h2 class="design-heading">2. Make it yours</h2>
-        <div class="form-row"><div><label for="shape">Dot shape</label><select id="shape"><option value="square">Classic squares</option><option value="rounded" selected>Soft squares</option><option value="dots">Dots</option></select></div><div><label for="eye">Corner style</label><select id="eye"><option value="square">Classic</option><option value="rounded" selected>Rounded</option></select></div></div>
+        <details class="design-controls"><summary><span>Customize your QR</span><small>COLOR / FRAME / LOGO</small></summary><div class="design-body">
+        <div class="form-row"><div><label for="shape">Dot shape</label><select id="shape"><option value="square" selected>Classic squares</option><option value="rounded">Soft squares</option><option value="dots">Dots</option></select></div><div><label for="eye">Corner style</label><select id="eye"><option value="square" selected>Classic</option><option value="rounded">Rounded</option></select></div></div>
         <div class="form-row"><div><label for="size">Download size</label><select id="size"><option value="512">512 × 512 px</option><option value="1024" selected>1024 × 1024 px</option><option value="2048">2048 × 2048 px</option></select></div></div>
         <label class="subtle-label" id="frameLabel">Frame style</label><div id="framePicker" class="frame-picker" role="group" aria-labelledby="frameLabel">
           <button type="button" class="frame-choice active" data-frame="none" aria-pressed="true"><span class="frame-art" aria-hidden="true"></span>Plain</button>
@@ -628,13 +503,14 @@ document.addEventListener('DOMContentLoaded', () => {
           <button type="button" class="frame-choice" data-frame="topbar" aria-pressed="false"><span class="frame-art" aria-hidden="true"></span>Ribbon</button>
         </div><input id="frame" type="hidden" value="none">
         <div id="captionField" class="field subtle-label" hidden><div class="field-grid"><div><label for="caption">Frame phrase</label><input id="caption" maxlength="24" value="SCAN ME" placeholder="SCAN ME"></div><div><label for="captionFont">Phrase font</label><select id="captionFont"><option value="sans">Sans-serif</option><option value="serif">Serif</option><option value="mono">Monospace</option></select></div></div></div>
-        <div class="field subtle-label"><label for="borderHex">Frame color</label><div class="color-control"><input id="borderColor" type="color" value="#24325e" aria-label="Choose frame color"><input id="borderHex" type="text" value="#24325E" maxlength="7" spellcheck="false" autocomplete="off" aria-label="Frame six digit hex color code"></div></div>
-        <div class="form-row"><div><label for="hex">QR color</label><div class="color-control"><input id="dark" type="color" value="#24325e" aria-label="Choose QR color"><input id="hex" type="text" value="#24325E" maxlength="7" spellcheck="false" autocomplete="off" aria-describedby="colorError" aria-label="Six digit hex color code"></div><p id="colorError" class="color-error" role="status"></p></div><div><label for="second">Second color</label><div class="color-control"><input id="second" type="color" value="#3952df" aria-label="Choose second color"><input id="secondHex" type="text" value="#3952DF" maxlength="7" spellcheck="false" autocomplete="off" aria-label="Second six digit hex color code"></div></div></div>
+        <div class="field subtle-label"><label for="borderHex">Frame color</label><div class="color-control"><input id="borderColor" type="color" value="#181816" aria-label="Choose frame color"><input id="borderHex" type="text" value="#181816" maxlength="7" spellcheck="false" autocomplete="off" aria-label="Frame six digit hex color code"></div></div>
+        <div class="form-row"><div><label for="hex">QR color</label><div class="color-control"><input id="dark" type="color" value="#181816" aria-label="Choose QR color"><input id="hex" type="text" value="#181816" maxlength="7" spellcheck="false" autocomplete="off" aria-describedby="colorError" aria-label="Six digit hex color code"></div><p id="colorError" class="color-error" role="status"></p></div><div><label for="second">Second color</label><div class="color-control"><input id="second" type="color" value="#66645a" aria-label="Choose second color"><input id="secondHex" type="text" value="#66645A" maxlength="7" spellcheck="false" autocomplete="off" aria-label="Second six digit hex color code"></div></div></div>
         <label class="check-line"><input id="gradient" type="checkbox"> Use gradient</label>
         <label for="logo">Center logo (PNG, JPEG, or WebP)</label><div class="logo-row"><input id="logo" type="file" accept="image/png,image/jpeg,image/webp"><button id="clearLogo" class="small-button" type="button" hidden>Remove logo</button><span id="logoName" class="logo-name"></span></div><p class="hint">Stored only in this browser tab. A small white backing keeps it legible.</p>
+        </div></details>
         <div class="notice"><strong>Your content stays here.</strong> Links, contact details, Wi-Fi passwords and logos are processed in this browser tab. We don’t upload them, save them on a server, or insert our own tracking link. <a href="#privacy">Read the plain-language privacy notes.</a></div>
       </section>
-      <section class="card preview" aria-label="QR code preview"><p class="preview-title">LIVE PREVIEW</p><div class="qr-stage"><div id="qr" role="img" aria-label="Generated QR code"></div></div><div id="matrixSource" aria-hidden="true"></div><p class="encoded"><strong>Encoded content:</strong> <span id="encoded"></span></p><div class="actions"><button id="png" class="action primary" type="button" disabled>Download PNG</button><button id="pdf" class="action" type="button" disabled>Print / Save PDF</button></div><p id="status" class="status" role="status"></p><p class="hint">Always test the finished code with your phone before printing it.</p></section>
+      <section class="card preview" aria-label="QR code preview"><h2 class="panel-heading preview-heading"><span>02 / OUTPUT</span><b>Your QR code.</b></h2><div class="qr-stage"><div id="qr" role="img" aria-label="Generated QR code"></div></div><div id="matrixSource" aria-hidden="true"></div><p class="encoded"><strong>Encoded content:</strong> <span id="encoded"></span></p><div class="actions"><button id="png" class="action primary" type="button" disabled>Download PNG</button><button id="pdf" class="action" type="button" disabled>Print / Save PDF</button></div><p id="status" class="status" role="status"></p><p class="download-aside">Keep your email. Take your QR.</p><p class="hint">Scan-test the finished code before printing it.</p></section>
     </div>
     <section class="info-section" id="how-it-works" aria-labelledby="how-title">
       <p class="section-kicker">THREE STEPS. NOTHING TO JOIN.</p>
